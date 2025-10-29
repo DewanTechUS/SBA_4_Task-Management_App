@@ -22,4 +22,6 @@ MDN appendChild: https://developer.mozilla.org/docs/Web/API/Node/appendChild
 MDN Array.find: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 MDN Array.filter: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 MDN Date toISOString: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+MDN select.onchange: https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event
+MDN textContent: https://developer.mozilla.org/docs/Web/API/Node/textContent
 */

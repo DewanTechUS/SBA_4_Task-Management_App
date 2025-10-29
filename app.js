@@ -33,6 +33,42 @@ addBtn.onclick = () => {
 
   render(); // Re-render (Check notes)
 };
+function render() {
+  const statusFilter = fStatus.value;
+
+  // Filter
+  const statusFiltered = tasks.filter(t => {
+    if (statusFilter === "All") return true;
+    if (statusFilter === "Overdue") return isOverdue(t);
+    return t.status === statusFilter;
+  });
+
+  sr.textContent = `${statusFiltered.length} tasks shown`;
+
+  rows.innerHTML = "";
+  if (statusFiltered.length === 0) {
+    emptyP.style.display = "block";
+    return;
+  }
+  emptyP.style.display = "none";
+
+  for (const t of statusFiltered) {
+    /* same row construction as before */
+    const tr = document.createElement("tr");
+    const overdue = isOverdue(t);
+    tr.innerHTML = `
+      <td>${t.name}</td>
+      <td>${t.category || "-"}</td>
+      <td style="color:${overdue ? 'red' : 'inherit'}">${t.due || "-"}</td>
+      <td>${overdue ? "Overdue" : t.status}</td>
+      <td>
+        <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
+        <button onclick="removeTask(${t.id})">Delete</button>
+      </td>
+    `;
+    rows.appendChild(tr);
+  }
+}
 
 // Helpers
 const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
@@ -76,12 +112,13 @@ function toggle(id) {
 <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
         <button onclick="removeTask(${t.id})">Delete</button>
       </td>
-    `;
+    `;// Set inner HTML
     rows.appendChild(tr);
   }
 }
+// Remove task
 function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);
   save(); render();
 }
-
+fStatus.onchange = render;
