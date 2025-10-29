@@ -67,4 +67,4 @@ JavaScript Arrays: https://www.w3schools.com/js/js_arrays.asp
 JavaScript Objects: https://www.w3schools.com/js/js_objects.asp
 
 # Reflection
-Building this app strengthened my understanding of DOM manipulation, array operations, and client-side data persistence. I practiced structuring code for readability and learned to iterate features incrementally, adding filters, overdue logic, accessibility, and edit functionality after establishing a working core.
+During this project, I faced challenges with organizing the JavaScript logic so that each feature—adding, filtering, editing, and persisting tasks—worked smoothly together. Managing state between the task array, filters, and localStorage required careful planning to avoid duplication and logic errors. I approached these challenges by breaking the app into smaller, testable parts: first adding and displaying tasks, then implementing filters, overdue checks, and finally editing and persistence. Debugging with console logs helped me understand the data flow at each stage.
