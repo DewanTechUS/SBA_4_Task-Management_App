@@ -17,4 +17,6 @@ W3S CSS background: https://www.w3schools.com/css/css_background.asp
 ----------JS References---------
 MDN localStorage: https://developer.mozilla.org/docs/Web/API/Window/localStorage
 MDN query DOM: https://developer.mozilla.org/docs/Web/API/Document/getElementById
+MDN createElement/innerHTML: https://developer.mozilla.org/docs/Web/API/Document/createElement
+MDN appendChild: https://developer.mozilla.org/docs/Web/API/Node/appendChild
 */

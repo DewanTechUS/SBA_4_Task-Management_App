@@ -42,3 +42,34 @@ const isOverdue = (t) => t.due && t.status !== "Completed" && t.due < todayISO()
 // Render (stub) // To be filled next
 function render() { /* filled next steps */ }
 render(); // Initial render
+function render() {
+  // announce count for accessibility
+  sr.textContent = `${tasks.length} tasks total`;
+// Clear existing rows
+  rows.innerHTML = ""; //
+  if (tasks.length === 0) { // Show empty message
+    emptyP.style.display = "block";
+    return;
+  }
+  emptyP.style.display = "none";
+// Populate rows // Iterate tasks //  
+  for (const t of tasks) {
+    const tr = document.createElement("tr");
+    const overdue = isOverdue(t);
+// Check overdue and set color
+//reference: MDN conditional (ternary) operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+
+    tr.innerHTML = ` 
+     <td>${t.name}</td>
+    <td>${t.category || "-"}</td>
+      <td style="color:${overdue ? 'red' : 'inherit'}">${t.due || "-"}</td>
+    <td>${overdue ? "Overdue" : t.status}</td>
+     <td>
+     
+<button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
+        <button onclick="removeTask(${t.id})">Delete</button>
+      </td>
+    `;
+    rows.appendChild(tr);
+  }
+}
