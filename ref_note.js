@@ -9,4 +9,8 @@ MDN select: https://developer.mozilla.org/docs/Web/HTML/Element/select
 MDN button: https://developer.mozilla.org/docs/Web/HTML/Element/button
 
 MDN aria-live: https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-live
+
+----Style CSS References----
+W3S CSS basics: https://www.w3schools.com/css/
+W3S CSS background: https://www.w3schools.com/css/css_background.asp
 */
