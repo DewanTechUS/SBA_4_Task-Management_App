@@ -83,7 +83,14 @@ function render() {
 }
 
 // Filters
-fClear.onclick = () => { fStatus.value = "All"; fCat.value = ""; render(); };
+fClear.onclick = () => {
+  fStatus.value = "All";
+  fCat.value = "";
+  localStorage.setItem("fStatus", "All");
+  localStorage.setItem("fCat", "");
+  render();
+};
+
 fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); render(); };
 fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
 fStatus.value = localStorage.getItem("fStatus") || "All";
