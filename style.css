@@ -13,6 +13,7 @@ h1 {
 
 .controls {
   margin: 10px 0;
+  ox-shadow: 0 1px 3px #010101;
 }
 
 label {
@@ -42,12 +43,15 @@ table {
   border-collapse: collapse;
   margin-top: 2px;
   background: white;
+  box-shadow: 0 1px 3px #010101;
+
 }
 
 th,
 td {
   border: 1px solid #ccc;
   padding: 8px;
+  box-shadow: 0 1px 3px #010101;
 }
 
 th {
