@@ -30,6 +30,7 @@ addBtn.onclick = () => { // Add task
 // Add task
   tasks.push({ id: Date.now(), name, category, due, status });
   save();
+  normalizeOverdues();
 // Clear inputs
   nameEl.value = "";
   catEl.value  = "";
@@ -96,13 +97,40 @@ fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
 fStatus.value = localStorage.getItem("fStatus") || "All";
 fCat.value    = localStorage.getItem("fCat") || "";
 // Helpers
-const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
-const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
-const isOverdue = (t) => t.due && t.status !== "Completed" && t.due < todayISO(); // Check overdue
+// Save tasks to localStorage
+const save = () => localStorage.setItem("tasks", JSON.stringify(tasks));
+// Local-midnight today in YYYY-MM-DD
+const todayISO = () => {
+  const d = new Date();
+  d.setHours(0,0,0,0);
+  return d.toISOString().slice(0,10);
+};
+
+// Check if a task is overdue
+const isOverdue = (t) => {
+  if (!t.due || t.status === "Completed") return false;
+  const due = new Date(t.due);
+ const today = new Date();
+today.setHours(0,0,0,0);
+return due < today;
+
+};
+
+// Automatically mark and save overdue tasks
+function normalizeOverdues() {
+  let changed = false;
+  for (const t of tasks) {
+    if (t.status !== "Completed" && isOverdue(t) && t.status !== "Overdue") {
+      t.status = "Overdue";
+      changed = true;
+    }
+  }
+  if (changed) save();
+}
 // Remove task
 function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);
-  save(); render();
+  save(); normalizeOverdues(); render();
 }
 // Toggle status
 function toggle(id) {
@@ -110,6 +138,7 @@ function toggle(id) {
   if (!t) return;
   t.status = t.status === "Completed" ? "In Progress" : "Completed";
   save();
+  normalizeOverdues();
   render();
 }
 function editTask(id) {
@@ -137,7 +166,7 @@ function editTask(id) {
   t.name = name;
   t.category = newCat.trim();
   t.due = newDue.trim();
-  save(); render();
+  save(); normalizeOverdues();render();
 }
 
 document.getElementById("profilePic").addEventListener("click", () => {
@@ -155,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => nameEl.focus());
 nameEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addBtn.click();
 });
+normalizeOverdues();
 render();
 /*Refs: I mostly used references for Html and js
 - HTML: https://developer.mozilla.org/en-US/docs/Web/HTML
