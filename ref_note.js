@@ -27,5 +27,6 @@ MDN textContent: https://developer.mozilla.org/docs/Web/API/Node/textContent
 MDN String.includes: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/includes
 MDN input event: https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event
 MDN onclick: https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick
+MDN confirm(): https://developer.mozilla.org/docs/Web/API/Window/confirm
 
 */
