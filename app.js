@@ -50,7 +50,7 @@ function render() {
     return okStatus && byCat;
   });
 
-  sr.textContent = `${filtered.length} tasks shown`;
+  sr.textContent = `${filtered.length} tasks shown`; // Announce count for accessibility
   rows.innerHTML = "";
   if (filtered.length === 0) { emptyP.style.display = "block"; return; }
   emptyP.style.display = "none";

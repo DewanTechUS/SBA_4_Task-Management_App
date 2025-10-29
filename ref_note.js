@@ -28,5 +28,5 @@ MDN String.includes: https://developer.mozilla.org/docs/Web/JavaScript/Reference
 MDN input event: https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event
 MDN onclick: https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick
 MDN confirm(): https://developer.mozilla.org/docs/Web/API/Window/confirm
-
+WebAIM ARIA basics: https://webaim.org/techniques/aria/
 */
