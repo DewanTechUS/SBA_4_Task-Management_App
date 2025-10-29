@@ -13,4 +13,8 @@ MDN aria-live: https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attribu
 ----Style CSS References----
 W3S CSS basics: https://www.w3schools.com/css/
 W3S CSS background: https://www.w3schools.com/css/css_background.asp
+
+----------JS References---------
+MDN localStorage: https://developer.mozilla.org/docs/Web/API/Window/localStorage
+MDN query DOM: https://developer.mozilla.org/docs/Web/API/Document/getElementById
 */
