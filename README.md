@@ -26,13 +26,16 @@ This project implements a browser-based Task Management application using HTML, 
 - Write readable, maintainable front-end code with clear structure
 
 # Project Structure
-- Task_Management_App
-- index.html 
-- style.css 
-- app.js 
-- ref_note.js 
-- Rocky400x400.jpg 
-- README.md 
+- .gitignore
+- app.js
+- BryanSantos.png
+- index.html
+- README.md
+- ref_note.js
+- Rocky400x400.jpg
+- style.css
+- style.js
+- TishanaTrainor.jpg 
 
 # How to Run
 - Download or clone the repository.
