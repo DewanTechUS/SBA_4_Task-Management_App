@@ -1,5 +1,5 @@
 // Storage
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []; 
 
 // Elements
 const nameEl = document.getElementById("name"); // Input Elements

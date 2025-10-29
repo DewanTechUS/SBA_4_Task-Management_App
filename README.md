@@ -4,11 +4,9 @@ Program: Per Scholas – Software Engineering (MERN Stack)
 Cohort: 2025 – RTT 57
 
 # Overview
-
 This project implements a browser-based Task Management application using HTML, CSS, and JavaScript. Users can create, edit, delete, filter, and persist tasks with localStorage. The work demonstrates core JavaScript fundamentals, DOM manipulation, event handling, conditional logic, array methods, and simple data persistence.
 
 # Features
-
 - Add tasks with name, category, due date, and status  
 - Edit existing tasks (name, category, due date)  
 - Toggle status between *In Progress* and *Completed*  
@@ -38,7 +36,6 @@ README.md
 
 
 # How to Run
-
 Download or clone the repository.
 Open index.html in a web browser. (Chrome)
 Add tasks using the input fields and the Add button.
@@ -46,7 +43,6 @@ Use the filters to view tasks by status or category.
 Close and reopen the page to confirm tasks persist via localStorage.
 
 # Notes on Approach
-
 Planned a minimal UI first (inputs, table, filters), then implemented functionality iteratively.
 Separated concerns: HTML for structure, CSS for presentation, JavaScript for behavior.
 Implemented render logic to rebuild the table from the current filtered state.
@@ -54,7 +50,6 @@ Stored tasks and filter choices in localStorage to persist across page reloads.
 Added small accessibility touches (labels for inputs, aria-live region for screen readers).
 
 # Key JavaScript Concepts Used
-
 DOM APIs: getElementById, createElement, innerHTML, event handlers
 Array methods: push, filter, find, map, iteration
 
