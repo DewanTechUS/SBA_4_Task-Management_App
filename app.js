@@ -142,9 +142,16 @@ function editTask(id) {
   save(); render();
 }
 
+document.getElementById("profilePic").addEventListener("click", () => {
+  alert("This is Per Scholas student: Dewan Mahmud - Software Engineer (MERN Stack)");
+});
 // Accessibility: Focus name input on load and Enter key to add
 document.addEventListener("DOMContentLoaded", () => nameEl.focus());
 nameEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addBtn.click();
 });
 render();
+/*Refs: I mostly used references for Html and js
+- HTML: https://developer.mozilla.org/en-US/docs/Web/HTML
+- JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+*/
