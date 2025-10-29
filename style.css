@@ -1,11 +1,11 @@
 body {
   font-family: Arial, sans-serif;
-  background: #000000;
-  color: #333;
-  padding: 100px;
-  text-align: center;
   background: linear-gradient(135deg, #ffffff 0%, #dbb7ff 100%);
-/* Header and Footer Styling */
+  color: #333;
+  padding: 10px;
+  text-align: center;
+}
+
 header {
   background: linear-gradient(90deg, #007bff, #9b59b6);
   color: white;
@@ -16,6 +16,7 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
+
 header h1 {
   margin: 0;
   font-size: 1.8rem;
@@ -25,33 +26,85 @@ header p {
   font-size: 1rem;
   margin-top: 5px;
 }
-/* Profile Picture Styling */
-.profile-pic {
-  width: 120px;
-  height: 120px;
+
+.profile-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.profile, .teacher {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-pic, .teacher-pic {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 4px solid #ffffff;
+  border: 4px solid #fff;
   object-fit: cover;
-  margin: 10px auto;
-  display: block;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.6s ease;
   cursor: pointer;
 }
 
-.profile-pic:hover {
+.profile-pic:hover,
+.teacher-pic:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.profile p, .teacher p {
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #fff;
 }
 
 
-}
+
 .container {
   max-width: 1000px;
   margin: 40px auto;
   padding: 16px;
   background: #fff;
   border-radius: 12px;
+}
+
+.profile-info h1 {
+  margin-bottom: 5px;
+}
+
+.teacher {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teacher-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.teacher p {
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.teacher-pic:hover {
+  transform: scale(1.05);
+}
+.profile-pic, .teacher-pic {
+  transition: transform 0.25s ease;
 }
 
 h1 {
@@ -62,6 +115,14 @@ h1 {
   margin: 10px 0;
   
 }
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+th, td { border: 1px solid #ccc; padding: 8px; }
+
+.profile-pic, .teacher-pic { transition: transform 0.25s ease; }
 
 label {
   margin: 0 5px;
