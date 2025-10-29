@@ -90,9 +90,10 @@ localStorage: getItem, setItem, JSON.parse, JSON.stringify
 - Stack Overflow – Developer Q&A: [stackoverflow.com](https://stackoverflow.com) 
 
 # Special Thanks
-I would like to express my sincere gratitude to my Per Scholas instructors — **Tishana Trainor** and **Bryan Santos** - for their guidance, support, and encouragement throughout this course. 
+- I would like to express my sincere gratitude to my Per Scholas instructors — **Tishana Trainor** and **Bryan Santos** - for their guidance, support, and encouragement throughout this course. 
 Special thanks to my **cohort classmates** and the **online developer community** on YouTube, MDN, and Stack Overflow for their resources and help while I built this project. 
-This project reflects not just my effort but also the collective knowledge and inspiration shared by my peers, mentors, and the broader tech community.
+
+- This project reflects not just my effort but also the collective knowledge and inspiration shared by my peers, mentors, and the broader tech community.
 
 # Reflection
 - During this project, I faced challenges with organizing the JavaScript logic so that each feature—adding, filtering, editing, and persisting tasks—worked smoothly together. Managing state between the task array, filters, and localStorage required careful planning to avoid duplication and logic errors. I approached these challenges by breaking the app into smaller, testable parts: first adding and displaying tasks, then implementing filters, overdue checks, and finally editing and persistence. Debugging with console logs helped me understand the data flow at each stage.
