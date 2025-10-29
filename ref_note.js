@@ -24,4 +24,6 @@ MDN Array.filter: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Gl
 MDN Date toISOString: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
 MDN select.onchange: https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event
 MDN textContent: https://developer.mozilla.org/docs/Web/API/Node/textContent
+MDN String.includes: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+MDN input event: https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event
 */

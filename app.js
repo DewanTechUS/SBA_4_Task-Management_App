@@ -35,25 +35,23 @@ addBtn.onclick = () => {
 };
 function render() {
   const statusFilter = fStatus.value;
+  const catFilter = (fCat.value || "").trim().toLowerCase();
 
-  // Filter
-  const statusFiltered = tasks.filter(t => {
-    if (statusFilter === "All") return true;
-    if (statusFilter === "Overdue") return isOverdue(t);
-    return t.status === statusFilter;
+  const filtered = tasks.filter(t => {
+    let okStatus = true;
+    if (statusFilter === "Overdue") okStatus = isOverdue(t);
+    else if (statusFilter !== "All") okStatus = t.status === statusFilter;
+
+    const byCat = !catFilter || (t.category || "").toLowerCase().includes(catFilter);
+    return okStatus && byCat;
   });
 
-  sr.textContent = `${statusFiltered.length} tasks shown`;
-
+  sr.textContent = `${filtered.length} tasks shown`;
   rows.innerHTML = "";
-  if (statusFiltered.length === 0) {
-    emptyP.style.display = "block";
-    return;
-  }
+  if (filtered.length === 0) { emptyP.style.display = "block"; return; }
   emptyP.style.display = "none";
 
-  for (const t of statusFiltered) {
-    /* same row construction as before */
+  for (const t of filtered) {
     const tr = document.createElement("tr");
     const overdue = isOverdue(t);
     tr.innerHTML = `
@@ -69,7 +67,7 @@ function render() {
     rows.appendChild(tr);
   }
 }
-
+fCat.oninput = render;
 // Helpers
 const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
 const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
@@ -121,4 +119,4 @@ function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);
   save(); render();
 }
-fStatus.onchange = render;
+fStatus.onchange = render; // Re-render on filter change
