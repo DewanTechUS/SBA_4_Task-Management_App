@@ -130,6 +130,8 @@ function editTask(id) {
   if (newDue === null) return;
 
   // basic date sanity (optional)
+  // Validate date format 
+  // Reference: MDN RegExp https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_expressions
   if (newDue && !/^\d{4}-\d{2}-\d{2}$/.test(newDue)) {
     return alert("Please use YYYY-MM-DD for dates.");
   }
