@@ -60,6 +60,7 @@ function render() {
     emptyP.style.display = "block";
     return;
   }
+
   emptyP.style.display = "none";
 
   for (const t of filtered) {
@@ -81,7 +82,6 @@ function render() {
     rows.appendChild(tr);
   }
 }
-
 // Filters
 fClear.onclick = () => {
   fStatus.value = "All";
@@ -95,12 +95,10 @@ fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); rende
 fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
 fStatus.value = localStorage.getItem("fStatus") || "All";
 fCat.value    = localStorage.getItem("fCat") || "";
-
 // Helpers
 const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
 const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
 const isOverdue = (t) => t.due && t.status !== "Completed" && t.due < todayISO(); // Check overdue
-
 // Remove task
 function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);

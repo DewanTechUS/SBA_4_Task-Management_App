@@ -67,17 +67,15 @@ header p {
   
 }
 
-
-
 .container {
   max-width: 2000px;
   margin: 40px auto;
   padding: 16px;
-  background: #eeffbb;
+  background: #8ec8ff;
+  background: linear-gradient(45deg, #ffcc8e 0%, #e3f2fd 50%, #8ec8ff 100%);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow-x: auto;
-  
 
 }
 
@@ -180,6 +178,7 @@ th {
 footer {
   margin-top: 40px;
   background: #333;
+  background: linear-gradient(90deg, #2b6d2b, #f65555);
   color: #fff;
   text-align: center;
   padding: 15px 10px;
