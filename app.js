@@ -72,13 +72,12 @@ function render() {
     rows.appendChild(tr);
   }
 }
-fCat.oninput = render;
 fClear.onclick = () => { fStatus.value = "All"; fCat.value = ""; render(); };
 fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); render(); };
 fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
    fStatus.value = localStorage.getItem("fStatus") || "All";
   fCat.value    = localStorage.getItem("fCat") || "";
-render();
+
 
 
 // Helpers
@@ -86,57 +85,53 @@ const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save
 const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
 const isOverdue = (t) => t.due && t.status !== "Completed" && t.due < todayISO(); // Check overdue
 
-// Render (stub) // To be filled next
-function render() { /* filled next steps */ }
-render(); // Initial render
 function render() {
-  // announce count for accessibility
-  sr.textContent = `${tasks.length} tasks total`;
-// Clear existing rows
-  rows.innerHTML = ""; //
-  if (tasks.length === 0) { // Show empty message
+  const statusFilter = fStatus.value;
+  const catFilter = (fCat.value || "").trim().toLowerCase();
+
+  const filtered = tasks.filter(t => {
+    let okStatus = true;
+    if (statusFilter === "Overdue") okStatus = isOverdue(t);
+    else if (statusFilter !== "All") okStatus = t.status === statusFilter;
+
+    const byCat = !catFilter || (t.category || "").toLowerCase().includes(catFilter);
+    return okStatus && byCat;
+  });
+
+  // accessibility announcement
+  sr.textContent = `${filtered.length} tasks shown`;
+
+  rows.innerHTML = "";
+  if (filtered.length === 0) {
     emptyP.style.display = "block";
     return;
   }
   emptyP.style.display = "none";
-// Populate rows // Iterate tasks //  
-  for (const t of tasks) {
-    const tr = document.createElement("tr");
+
+  for (const t of filtered) {
     const overdue = isOverdue(t);
-// Check overdue and set color
-//reference: MDN conditional (ternary) operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
-// Action buttons // Toggle status and Delete buttons// 
-function toggle(id) {
-  const t = tasks.find(x => x.id === id);
-  if (!t) return;
-  t.status = t.status === "Completed" ? "In Progress" : "Completed"; //
-  save(); render();
-}
-//--
-    tr.innerHTML = ` 
-     <td>${t.name}</td>
-    <td>${t.category || "-"}</td>
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${t.name}</td>
+      <td>${t.category || "-"}</td>
       <td style="color:${overdue ? 'red' : 'inherit'}">${t.due || "-"}</td>
-    <td>${overdue ? "Overdue" : t.status}</td>
-      
-    <td> 
-  <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
-  <button onclick="editTask(${t.id})">Edit</button>
-  <button onclick="removeTask(${t.id})">Delete</button>
-</td>
- 
-    `;// Set inner HTML
-    
+      <td>${overdue ? "Overdue" : t.status}</td>
+      <td>
+        <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
+        <button onclick="editTask(${t.id})">Edit</button>
+        <button onclick="removeTask(${t.id})">Delete</button>
+      </td>
+    `;
     rows.appendChild(tr);
   }
-  
 }
+
 // Remove task
 function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);
   save(); render();
 }
-fStatus.onchange = render; // Re-render on filter change
+
 function editTask(id) {
   const t = tasks.find(x => x.id === id);
   if (!t) return;
@@ -168,3 +163,4 @@ document.addEventListener("DOMContentLoaded", () => nameEl.focus());
 nameEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addBtn.click();
 });
+render();
