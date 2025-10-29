@@ -74,6 +74,12 @@ function render() {
 }
 fCat.oninput = render;
 fClear.onclick = () => { fStatus.value = "All"; fCat.value = ""; render(); };
+fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); render(); };
+fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
+   fStatus.value = localStorage.getItem("fStatus") || "All";
+  fCat.value    = localStorage.getItem("fCat") || "";
+render();
+
 
 // Helpers
 const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage

@@ -31,4 +31,5 @@ MDN onclick: https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oncl
 MDN confirm(): https://developer.mozilla.org/docs/Web/API/Window/confirm
 WebAIM ARIA basics: https://webaim.org/techniques/aria/
 MDN keydown: https://developer.mozilla.org/docs/Web/API/Element/keydown_event
+MDN localStorage: https://developer.mozilla.org/docs/Web/API/Window/localStorage
 */
