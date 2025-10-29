@@ -15,6 +15,7 @@ const fStatus = document.getElementById("fStatus");
 const rows   = document.getElementById("rows");
  const emptyP = document.getElementById("empty");
   const sr = document.getElementById("sr");
+
 addBtn.onclick = () => { // Add task
   const name = nameEl.value.trim();
   if (!name) return alert("Please enter a task name.");
@@ -126,3 +127,9 @@ function removeTask(id) {
   save(); render();
 }
 fStatus.onchange = render; // Re-render on filter change
+
+// Accessibility: Focus name input on load and Enter key to add
+document.addEventListener("DOMContentLoaded", () => nameEl.focus());
+nameEl.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") addBtn.click();
+});

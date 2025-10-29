@@ -29,4 +29,5 @@ MDN input event: https://developer.mozilla.org/docs/Web/API/HTMLElement/input_ev
 MDN onclick: https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick
 MDN confirm(): https://developer.mozilla.org/docs/Web/API/Window/confirm
 WebAIM ARIA basics: https://webaim.org/techniques/aria/
+MDN keydown: https://developer.mozilla.org/docs/Web/API/Element/keydown_event
 */
