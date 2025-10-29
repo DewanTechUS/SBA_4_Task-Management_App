@@ -38,53 +38,7 @@ addBtn.onclick = () => { // Add task
 
   render(); // Re-render (Check notes)
 };
-function render() {
-  const statusFilter = fStatus.value;
-  const catFilter = (fCat.value || "").trim().toLowerCase();
-
-  const filtered = tasks.filter(t => {
-    let okStatus = true;
-    if (statusFilter === "Overdue") okStatus = isOverdue(t);
-    else if (statusFilter !== "All") okStatus = t.status === statusFilter;
-
-    const byCat = !catFilter || (t.category || "").toLowerCase().includes(catFilter);
-    return okStatus && byCat;
-  });
-
-  sr.textContent = `${filtered.length} tasks shown`; // Announce count for accessibility
-  rows.innerHTML = "";
-  if (filtered.length === 0) { emptyP.style.display = "block"; return; }
-  emptyP.style.display = "none";
-
-  for (const t of filtered) {
-    const tr = document.createElement("tr");
-    const overdue = isOverdue(t);
-    tr.innerHTML = `
-      <td>${t.name}</td>
-      <td>${t.category || "-"}</td>
-      <td style="color:${overdue ? 'red' : 'inherit'}">${t.due || "-"}</td>
-      <td>${overdue ? "Overdue" : t.status}</td>
-      <td>
-        <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
-        <button onclick="removeTask(${t.id})">Delete</button>
-      </td>
-    `;
-    rows.appendChild(tr);
-  }
-}
-fClear.onclick = () => { fStatus.value = "All"; fCat.value = ""; render(); };
-fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); render(); };
-fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
-   fStatus.value = localStorage.getItem("fStatus") || "All";
-  fCat.value    = localStorage.getItem("fCat") || "";
-
-
-
-// Helpers
-const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
-const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
-const isOverdue = (t) => t.due && t.status !== "Completed" && t.due < todayISO(); // Check overdue
-
+// Render function
 function render() {
   const statusFilter = fStatus.value;
   const catFilter = (fCat.value || "").trim().toLowerCase();
@@ -117,7 +71,9 @@ function render() {
       <td style="color:${overdue ? 'red' : 'inherit'}">${t.due || "-"}</td>
       <td>${overdue ? "Overdue" : t.status}</td>
       <td>
-        <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
+        <button onclick="toggle(${t.id})">
+          ${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}
+        </button>
         <button onclick="editTask(${t.id})">Edit</button>
         <button onclick="removeTask(${t.id})">Delete</button>
       </td>
@@ -126,12 +82,31 @@ function render() {
   }
 }
 
+// Filters
+fClear.onclick = () => { fStatus.value = "All"; fCat.value = ""; render(); };
+fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); render(); };
+fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
+fStatus.value = localStorage.getItem("fStatus") || "All";
+fCat.value    = localStorage.getItem("fCat") || "";
+
+// Helpers
+const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
+const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
+const isOverdue = (t) => t.due && t.status !== "Completed" && t.due < todayISO(); // Check overdue
+
 // Remove task
 function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);
   save(); render();
 }
-
+// Toggle status
+function toggle(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+  t.status = t.status === "Completed" ? "In Progress" : "Completed";
+  save();
+  render();
+}
 function editTask(id) {
   const t = tasks.find(x => x.id === id);
   if (!t) return;
