@@ -118,14 +118,18 @@ function toggle(id) {
     <td>${t.category || "-"}</td>
       <td style="color:${overdue ? 'red' : 'inherit'}">${t.due || "-"}</td>
     <td>${overdue ? "Overdue" : t.status}</td>
-     <td>
-     
-<button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
-        <button onclick="removeTask(${t.id})">Delete</button>
-      </td>
+      
+    <td> 
+  <button onclick="toggle(${t.id})">${t.status === "Completed" ? "Mark In Progress" : "Mark Completed"}</button>
+  <button onclick="editTask(${t.id})">Edit</button>
+  <button onclick="removeTask(${t.id})">Delete</button>
+</td>
+ 
     `;// Set inner HTML
+    
     rows.appendChild(tr);
   }
+  
 }
 // Remove task
 function removeTask(id) {
@@ -133,6 +137,31 @@ function removeTask(id) {
   save(); render();
 }
 fStatus.onchange = render; // Re-render on filter change
+function editTask(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+
+  const newName = prompt("Edit task name:", t.name);
+  if (newName === null) return; // canceled
+  const name = newName.trim();
+  if (!name) return alert("Task name cannot be empty.");
+
+  const newCat = prompt("Edit category:", t.category || "");
+  if (newCat === null) return;
+
+  const newDue = prompt("Edit due date (YYYY-MM-DD):", t.due || "");
+  if (newDue === null) return;
+
+  // basic date sanity (optional)
+  if (newDue && !/^\d{4}-\d{2}-\d{2}$/.test(newDue)) {
+    return alert("Please use YYYY-MM-DD for dates.");
+  }
+
+  t.name = name;
+  t.category = newCat.trim();
+  t.due = newDue.trim();
+  save(); render();
+}
 
 // Accessibility: Focus name input on load and Enter key to add
 document.addEventListener("DOMContentLoaded", () => nameEl.focus());
