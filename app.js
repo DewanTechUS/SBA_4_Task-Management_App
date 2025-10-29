@@ -15,6 +15,24 @@ const fStatus = document.getElementById("fStatus");
 const rows   = document.getElementById("rows");
  const emptyP = document.getElementById("empty");
   const sr = document.getElementById("sr");
+addBtn.onclick = () => {
+  const name = nameEl.value.trim();
+  if (!name) return alert("Please enter a task name.");
+
+  const category = catEl.value.trim();
+  const due = dueEl.value;
+  const status = statEl.value;// Get values
+// Add task
+  tasks.push({ id: Date.now(), name, category, due, status });
+  save();
+// Clear inputs
+  nameEl.value = "";
+  catEl.value  = "";
+  dueEl.value  = "";
+  statEl.value = "In Progress";
+
+  render(); // Re-render (Check notes)
+};
 
 // Helpers
 const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
