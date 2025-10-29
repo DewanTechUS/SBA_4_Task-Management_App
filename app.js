@@ -62,7 +62,7 @@ function render() {
 function toggle(id) {
   const t = tasks.find(x => x.id === id);
   if (!t) return;
-  t.status = t.status === "Completed" ? "In Progress" : "Completed";
+  t.status = t.status === "Completed" ? "In Progress" : "Completed"; //
   save(); render();
 }
 //--
@@ -80,3 +80,8 @@ function toggle(id) {
     rows.appendChild(tr);
   }
 }
+function removeTask(id) {
+  tasks = tasks.filter(x => x.id !== id);
+  save(); render();
+}
+
