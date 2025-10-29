@@ -19,4 +19,5 @@ MDN localStorage: https://developer.mozilla.org/docs/Web/API/Window/localStorage
 MDN query DOM: https://developer.mozilla.org/docs/Web/API/Document/getElementById
 MDN createElement/innerHTML: https://developer.mozilla.org/docs/Web/API/Document/createElement
 MDN appendChild: https://developer.mozilla.org/docs/Web/API/Node/appendChild
+MDN Array.find: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 */

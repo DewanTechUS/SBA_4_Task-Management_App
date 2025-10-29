@@ -58,7 +58,14 @@ function render() {
     const overdue = isOverdue(t);
 // Check overdue and set color
 //reference: MDN conditional (ternary) operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
-
+// Action buttons // Toggle status and Delete buttons// 
+function toggle(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+  t.status = t.status === "Completed" ? "In Progress" : "Completed";
+  save(); render();
+}
+//--
     tr.innerHTML = ` 
      <td>${t.name}</td>
     <td>${t.category || "-"}</td>
