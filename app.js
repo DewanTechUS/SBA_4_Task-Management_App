@@ -68,6 +68,8 @@ function render() {
   }
 }
 fCat.oninput = render;
+fClear.onclick = () => { fStatus.value = "All"; fCat.value = ""; render(); };
+
 // Helpers
 const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save to localStorage
 const todayISO = () => new Date().toISOString().slice(0,10); // YYYY-MM-DD // ISO format
