@@ -143,7 +143,14 @@ function editTask(id) {
 }
 
 document.getElementById("profilePic").addEventListener("click", () => {
-  alert("This is Per Scholas student: Dewan Mahmud - Software Engineer (MERN Stack)");
+  alert("Per Scholas Student: Dewan Mahmud - Software Engineer (MERN Stack)");
+});
+
+document.querySelectorAll(".teacher-pic").forEach(pic => {
+  pic.addEventListener("click", (e) => {
+    const name = e.target.nextElementSibling.textContent;
+    alert(`Instructor: ${name} - Per Scholas Software Engineering Program`);
+  });
 });
 // Accessibility: Focus name input on load and Enter key to add
 document.addEventListener("DOMContentLoaded", () => nameEl.focus());
