@@ -6,6 +6,13 @@ body {
   text-align: center;
   background: linear-gradient(135deg, #ffffff 0%, #dbb7ff 100%);
 }
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+}
 
 h1 {
   margin-bottom: 15px;
