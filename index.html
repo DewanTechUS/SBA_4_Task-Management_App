@@ -25,10 +25,37 @@
     <option>In Progress</option>
     <option>Completed</option>
   </select>
+  <label for="fStatus">Filter status</label>
+  <select id="fStatus">
+    <option>All</option>
+    <option>In Progress</option>
+    <option>Completed</option>
+    <option>Overdue</option>
+  </select>
+<!-- filter by category -->
+  <label for="fCat">Filter category</label>
+  <input id="fCat" placeholder="Filter category" />
+  <button id="fClear">Clear</button>
+</div>
+<!-- task list table -->
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Category</th>
+      <th>Deadline</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="rows"></tbody>
+</table>
+
+<p id="empty" class="muted">No tasks yet.</p>
+<ul id="sr" aria-live="polite" style="position:absolute;left:-9999px;"></ul>
 
   <button id="add">Add</button>
-</div>
-  
+
 <!-- MDN HTML: https://developer.mozilla.org/docs/Web/HTML
 MDN defer: https://developer.mozilla.org/docs/Web/HTML/Element/script#attr-defer -->
 </body>
