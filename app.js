@@ -1,20 +1,25 @@
 // Storage
-let tasks = JSON.parse(localStorage.getItem("tasks")) || []; 
+let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Load tasks
+// Helpers
+// Save tasks to localStorage
+const save = () => localStorage.setItem("tasks", JSON.stringify(tasks)); // Save tasks
 
 // Elements
 const nameEl = document.getElementById("name"); // Input Elements
 const catEl  = document.getElementById("cat");
- const dueEl  = document.getElementById("due");
+const dueEl  = document.getElementById("due");
 const statEl = document.getElementById("stat");
- const addBtn = document.getElementById("add");
-// Filter Elements
+const addBtn = document.getElementById("add");
+
+// Filter Elements //
 const fStatus = document.getElementById("fStatus");
- const fCat    = document.getElementById("fCat");
- const fClear  = document.getElementById("fClear");
+const fCat    = document.getElementById("fCat");
+const fClear  = document.getElementById("fClear");
+
 // Rows and messages
 const rows   = document.getElementById("rows");
- const emptyP = document.getElementById("empty");
-  const sr = document.getElementById("sr");
+const emptyP = document.getElementById("empty");
+const sr     = document.getElementById("sr");
 
 addBtn.onclick = () => { // Add task
   const name = nameEl.value.trim();
@@ -22,16 +27,17 @@ addBtn.onclick = () => { // Add task
 
   const category = catEl.value.trim();
   const due = dueEl.value;
-  const status = statEl.value;// Get values
+  const status = statEl.value; // Get values
   if (due && due < todayISO()) {
-  if (!confirm("Due date is in the past. Continue?")) return;
-}
+    if (!confirm("Due date is in the past. Continue?")) return;
+  }
 
-// Add task
+  // Add task
   tasks.push({ id: Date.now(), name, category, due, status });
   save();
   normalizeOverdues();
-// Clear inputs
+
+  // Clear inputs
   nameEl.value = "";
   catEl.value  = "";
   dueEl.value  = "";
@@ -39,6 +45,7 @@ addBtn.onclick = () => { // Add task
 
   render(); // Re-render (Check notes)
 };
+
 // Render function
 function render() {
   const statusFilter = fStatus.value;
@@ -83,6 +90,7 @@ function render() {
     rows.appendChild(tr);
   }
 }
+
 // Filters
 fClear.onclick = () => {
   fStatus.value = "All";
@@ -93,12 +101,13 @@ fClear.onclick = () => {
 };
 
 fStatus.onchange = () => { localStorage.setItem("fStatus", fStatus.value); render(); };
-fCat.oninput = () => { localStorage.setItem("fCat", fCat.value); render(); };
+fCat.oninput     = () => { localStorage.setItem("fCat", fCat.value); render(); };
+
 fStatus.value = localStorage.getItem("fStatus") || "All";
 fCat.value    = localStorage.getItem("fCat") || "";
-// Helpers
-// Save tasks to localStorage
-const save = () => localStorage.setItem("tasks", JSON.stringify(tasks));
+
+
+
 // Local-midnight today in YYYY-MM-DD
 const todayISO = () => {
   const d = new Date();
@@ -110,10 +119,9 @@ const todayISO = () => {
 const isOverdue = (t) => {
   if (!t.due || t.status === "Completed") return false;
   const due = new Date(t.due);
- const today = new Date();
-today.setHours(0,0,0,0);
-return due < today;
-
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  return due < today;
 };
 
 // Automatically mark and save overdue tasks
@@ -127,11 +135,15 @@ function normalizeOverdues() {
   }
   if (changed) save();
 }
+
 // Remove task
 function removeTask(id) {
   tasks = tasks.filter(x => x.id !== id);
-  save(); normalizeOverdues(); render();
+  save(); 
+  normalizeOverdues(); 
+  render();
 }
+
 // Toggle status
 function toggle(id) {
   const t = tasks.find(x => x.id === id);
@@ -141,6 +153,7 @@ function toggle(id) {
   normalizeOverdues();
   render();
 }
+
 function editTask(id) {
   const t = tasks.find(x => x.id === id);
   if (!t) return;
@@ -156,19 +169,22 @@ function editTask(id) {
   const newDue = prompt("Edit due date (YYYY-MM-DD):", t.due || "");
   if (newDue === null) return;
 
-  // basic date sanity (optional)
+  // basic date sanity check
   // Validate date format 
   // Reference: MDN RegExp https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_expressions
-  if (newDue && !/^\d{4}-\d{2}-\d{2}$/.test(newDue)) {
+  if (newDue && !/^\d{4}-\d{2}-\d{2}$/.test(newDue)) { // 
     return alert("Please use YYYY-MM-DD for dates.");
   }
 
   t.name = name;
   t.category = newCat.trim();
   t.due = newDue.trim();
-  save(); normalizeOverdues();render();
+  save(); 
+  normalizeOverdues();
+  render();
 }
 
+// Profile and instructor alerts
 document.getElementById("profilePic").addEventListener("click", () => {
   alert("Per Scholas Student: Dewan Mahmud - Software Engineer (MERN Stack)");
 });
@@ -179,13 +195,16 @@ document.querySelectorAll(".teacher-pic").forEach(pic => {
     alert(`Instructor: ${name} - Per Scholas Software Engineering Program`);
   });
 });
+
 // Accessibility: Focus name input on load and Enter key to add
 document.addEventListener("DOMContentLoaded", () => nameEl.focus());
 nameEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") addBtn.click();
 });
+
 normalizeOverdues();
 render();
+
 /*Refs: I mostly used references for Html and js
 - HTML: https://developer.mozilla.org/en-US/docs/Web/HTML
 - JavaScript: https://developer.mozilla.org/en-US/docs/Web/JavaScript
