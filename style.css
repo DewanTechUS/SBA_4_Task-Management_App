@@ -1,7 +1,8 @@
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #8f8bff 0%, #dbb7ff 100%);
-  color: #333;
+  color: #000000;
+  font-weight: bold;
   padding: 10px;
   text-align: center;
 }
@@ -72,7 +73,7 @@ header p {
   margin: 40px auto;
   padding: 16px;
   background: #8ec8ff;
-  background: linear-gradient(45deg, #ffcc8e 0%, #e3f2fd 50%, #8ec8ff 100%);
+  background: linear-gradient(45deg, #faf9f9 0%, #2e22e1 50%, #fff8f8 100%);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow-x: auto;
@@ -193,4 +194,30 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+#add {
+  background: #111;
+  color: #fff;
+  border: 2px solid #6a5af9;
+  border-radius: 12px;
+  padding: 12px 35px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px #6a5af9, 0 0 20px #9c32e2, 0 0 40px #f36896;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #6a5af9, 0 0 20px #9c32e2;
+  }
+  to {
+    box-shadow: 0 0 20px #f36896, 0 0 60px #ff0b0b;
+  }
+}
+#add:hover {
+  background: #222;
 }
