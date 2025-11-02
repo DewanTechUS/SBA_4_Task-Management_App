@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #8f8bff 0%, #dbb7ff 100%);
+  background: linear-gradient(135deg, #c2a1a1 0%, #7c00f8 100%);
   color: #000000;
   font-weight: bold;
   padding: 10px;
@@ -8,19 +8,23 @@ body {
 }
 
 header {
-  background: linear-gradient(90deg, #007bff, #9b59b6);
-  color: white;
+  background: linear-gradient(90deg, #faf6f6, #574ceb, #ffffff);
   text-align: center;
-  padding: 20px 10px;
-  border-radius: 8px;
+  padding: 10px 20px; /* responsive padding */
+  border-radius: 12px;
   margin-bottom: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-
-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
+header h1,
+.profile-info h1 {
+  display: block;
+  font-size: 2.5rem;
+  margin: 5px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  animation: glowText 3s ease-in-out infinite alternate; /* renamed */
 }
 
 header p {
@@ -38,10 +42,8 @@ header p {
 }
 
 .profile, .teacher {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  width: 100%;
+  max-width: 160px; /* responsive cap */
 }
 
 .profile-pic, .teacher-pic {
@@ -65,23 +67,32 @@ header p {
   font-weight: 500;
   font-size: 0.9rem;
   color: #fff;
-  
 }
 
 .container {
-  max-width: 2000px;
+  width: 95%;              
+  max-width: 1200px;       
   margin: 40px auto;
   padding: 16px;
-  background: #8ec8ff;
   background: linear-gradient(45deg, #faf9f9 0%, #2e22e1 50%, #fff8f8 100%);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow-x: auto;
-
 }
 
-.profile-info h1 {
-  margin-bottom: 5px;
+
+@keyframes glowText {
+  from {
+    text-shadow:
+      0 0 8px #ffffff4d,
+      0 0 15px #f368964d;
+  }
+  to {
+    text-shadow:
+      0 0 15px #1900f6cc,
+      0 0 30px #ffb70099,
+      0 0 45px #ff005599;
+  }
 }
 
 .teacher {
@@ -104,38 +115,23 @@ header p {
   font-weight: 500;
   font-size: 0.9rem;
 }
-.teacher-pic:hover {
-  transform: scale(2.05);
-}
+
 .profile-pic, .teacher-pic {
   transition: transform 0.25s ease;
 }
 
-h1 {
-  margin-bottom: 15px;
-}
-
 .controls {
   margin: 10px 0;
-
-  
 }
 
 th, td {
   border: 1px solid #ccc;
   padding: 8px;
 }
-th, td { border: 1px solid #ccc; padding: 8px; }
 
-.profile-pic, .teacher-pic { transition: transform 0.25s ease; }
+label { margin: 0 5px; }
 
-label {
-  margin: 0 5px;
-}
-
-input,
-select,
-button {
+input, select, button {
   padding: 6px;
   margin: 4px;
 }
@@ -146,12 +142,9 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  
 }
 
-button:hover {
-  background: #0056b3;
-}
+button:hover { background: #0056b3; }
 
 table {
   width: 100%;
@@ -159,7 +152,6 @@ table {
   margin-top: 2px;
   background: white;
   box-shadow: 0 1px 3px #010101;
-
 }
 
 button:focus {
@@ -167,18 +159,12 @@ button:focus {
   outline-offset: 2px;
 }
 
-th {
-  background: #f0f0f0;
-}
+th { background: #f0f0f0; }
 
-.muted {
-  color: #777;
-  margin-top: 10px;
-}
+.muted { color: #777; margin-top: 10px; }
 
 footer {
   margin-top: 40px;
-  background: #333;
   background: linear-gradient(90deg, #2115fb, #2b773a);
   color: #fff;
   text-align: center;
@@ -186,15 +172,9 @@ footer {
   border-radius: 8px;
   box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
 }
-footer a {
-  color: #61dafb;
-  text-decoration: none;
-  margin: 0 5px;
-}
+footer a { color: #61dafb; text-decoration: none; margin: 0 5px; }
+footer a:hover { text-decoration: underline; }
 
-footer a:hover {
-  text-decoration: underline;
-}
 
 #add {
   background: #111;
@@ -207,17 +187,167 @@ footer a:hover {
   cursor: pointer;
   text-transform: uppercase;
   box-shadow: 0 0 5px #6a5af9, 0 0 20px #9c32e2, 0 0 40px #f36896;
-  animation: glow 1.5s ease-in-out infinite alternate;
+  animation: glowBtn 1.5s ease-in-out infinite alternate; /* renamed */
+}
+#add:hover { background: #222; }
+
+
+@keyframes glowBtn {
+  from { box-shadow: 0 0 5px #6a5af9, 0 0 20px #9c32e2; }
+  to   { box-shadow: 0 0 20px #f36896, 0 0 60px #ff0b0b; }
 }
 
-@keyframes glow {
-  from {
-    box-shadow: 0 0 5px #6a5af9, 0 0 20px #9c32e2;
-  }
-  to {
-    box-shadow: 0 0 20px #f36896, 0 0 60px #ff0b0b;
-  }
+.quote {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #facd88;
+  text-shadow: 0 0 8px rgba(156, 50, 226, 0.3);
+  animation: glowQuote 3s ease-in-out infinite alternate;
 }
-#add:hover {
-  background: #222;
+@keyframes glowQuote {
+  from { text-shadow: 0 0 8px #000000; }
+  to   { text-shadow: 0 0 15px #20000b; }
+}
+
+/* Teacher Card extra styles */
+.teacher {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px;
+  width: 140px;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(106, 90, 249, 0.2);
+}
+.teacher:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(156, 50, 226, 0.6),
+              0 0 30px rgba(243, 104, 150, 0.4);
+}
+.teacher-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(106, 90, 249, 0.6);
+  transition: 0.4s ease;
+}
+.teacher:hover .teacher-pic {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 0 25px rgba(243, 104, 150, 0.8),
+              0 0 35px rgba(255, 183, 0, 0.6);
+}
+.teacher p {
+  margin-top: 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+.teacher small {
+  color: #ffb700;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Profile card */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px;
+  width: 160px;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px rgba(106, 90, 249, 0.2);
+}
+.profile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(156, 50, 226, 0.6),
+              0 0 30px rgba(243, 104, 150, 0.4);
+}
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(106, 90, 249, 0.6);
+  transition: 0.4s ease;
+}
+.profile:hover .profile-pic {
+  transform: rotate(-5deg) scale(1.05);
+  box-shadow: 0 0 25px rgba(243, 104, 150, 0.8),
+              0 0 35px rgba(255, 183, 0, 0.6);
+}
+
+
+iframe {
+  display: block;
+  margin: 20px auto;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 853px;       /* cap at your desktop size */
+  aspect-ratio: 16 / 9;   /* keep proper video ratio */
+  height: auto;
+}
+iframe:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1,
+  .profile-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .profile-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .profile, .teacher {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .profile-pic, .teacher-pic {
+    width: 70px;
+    height: 70px;
+  }
+  .profile-pic:hover,
+  .teacher-pic:hover {
+    transform: scale(1.08);
+  }
+
+  .container {
+    width: 95%;
+    max-width: 95%;
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  table, th, td {
+    font-size: 0.85rem;
+    word-break: break-word;
+  }
+
+  #add {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  iframe {
+    max-width: 100%;
+    border-radius: 12px;
+  }
 }
