@@ -11,13 +11,13 @@
 <body>
   <header class="header">
   <div class="profile-row">
+   
     <div class="profile">
       <img 
         id="profilePic" 
         src="./Rocky400x400.jpg" 
         alt="Dewan Mahmud Profile Picture" 
-        class="profile-pic"
-      />
+        class="profile-pic" />
       <p><strong>Dewan Mahmud</strong><br>Student</p>
     </div>
 
@@ -25,30 +25,45 @@
       <img src="./TishanaTrainor.jpg" alt="Instructor Tishana Trainor" class="teacher-pic" />
       <p>Tishana Trainor<br><small>Instructor</small></p>
     </div>
-
+    
     <div class="teacher">
       <img src="./BryanSantos.png" alt="Instructor Bryan Santos" class="teacher-pic" />
+      
       <p>Bryan Santos<br><small>Instructor</small></p>
     </div>
   </div>
 
-  <div class="profile-info">
+
+ <div class="profile-info">
     <h1>SBA 4 Task Management App</h1>
     <p>Per Scholas - Software Engineering (MERN Stack)</p>
   </div>
+<p class="quote">
+  “Don't get lost in the process! Listen to the music and get inspired!” 
+  <br> <strong>Dewan Mahmud</strong>
+</p>
+
+
+<iframe
+  width="500"
+  height="300"
+  src="https://www.youtube.com/embed/GXOdoTGKcbk?autoplay=1&mute=0&loop=1&playlist=GXOdoTGKcbk"
+  title="FAST X | My City (Official Music Video) | G Herbo, 24kGoldn & Kane Brown"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen>
+</iframe>
+
 </header>
   <main class="container">
-  <!-- task list table -->
 <div class="controls">
   <label for="name">Task name</label>
     <input id="name" placeholder="Task name" />
-
   <label for="cat">Category</label>
   <input id="cat" placeholder="Category" />
-
   <label for="due">Deadline</label>
   <input id="due" type="date" />
-
   <label for="stat">Status</label>
   <select id="stat">
     <option>In Progress</option>
@@ -61,12 +76,10 @@
     <option>Completed</option>
     <option>Overdue</option>
   </select>
-<!-- filter by category -->
   <label for="fCat">Filter category</label>
   <input id="fCat" placeholder="Filter category" />
   <button id="fClear">Clear</button>
 </div>
-<!-- task list table -->
 <table>
   <thead>
     <tr>
@@ -79,10 +92,8 @@
   </thead>
   <tbody id="rows"></tbody>
 </table>
-
 <p id="empty" class="muted">No tasks yet.</p>
 <div id="sr" role="status" aria-live="polite" style="position:absolute;left:-9999px;"></div>
-
   <button id="add">Add</button>
 </main>
  <footer class="footer">
